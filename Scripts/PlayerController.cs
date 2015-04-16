@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-
+	
 	private float speed = 20;
-
+	private float tilt = 5;
 	private Vector3 moveForward = new Vector3(0, 0, 2);
-
-	private Rigidbody jetRB;
+	public Rigidbody jetRB;
 
 	void Start () {
 
