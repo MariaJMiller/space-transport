@@ -1,9 +1,4 @@
-﻿// The JET model found in the Unity Store has to be rotated
-// 270 degrees to face forward correctly. Using 
-// transform.forward does not shoot in the forward direction.
-
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class BoltShot : MonoBehaviour {
@@ -16,6 +11,8 @@ public class BoltShot : MonoBehaviour {
 	void Start () {
 	
 		jet = GameObject.Find ("Jet").transform;
+		// Because the Jet Model is incorrectly rotated on import,
+		// shooting in the z-axis is transform.up, not transform.forward
 		rigidbody.velocity = (-jet.up * speed);
 	}
 
