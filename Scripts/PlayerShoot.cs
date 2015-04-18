@@ -4,8 +4,7 @@ using System.Collections;
 public class PlayerShoot : MonoBehaviour {
 
 	// Laser shots.
-	private GameObject LaserBolt;
-	private GameObject jet;
+	public GameObject LaserBolt;
 	private Transform BodyGunTopRight;
 	private Transform BodyGunBottomRight;
 	private Transform BodyGunTopLeft;
@@ -18,7 +17,6 @@ public class PlayerShoot : MonoBehaviour {
 
 	void Start () {
 
-		LaserBolt = Instantiate(Resources.Load("whiteLaserBolt", typeof(GameObject))) as GameObject;
 		BodyGunTopRight = GameObject.Find("Jet/Gun/ShotSpawnRT").transform;
 		BodyGunBottomRight = GameObject.Find ("Jet/Gun001/ShotSpawnRB").transform;
 		BodyGunTopLeft = GameObject.Find ("Jet/Gun003/ShotSpawnLT").transform;
@@ -28,7 +26,7 @@ public class PlayerShoot : MonoBehaviour {
 	void Update () {
 
 
-		if (Input.GetButton("Fire1")) {
+		if (Input.GetButton("Fire1") && Time.time > laserNextFire) {
 
 			laserNextFire = Time.time + laserFireRate;
 
