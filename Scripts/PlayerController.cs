@@ -5,9 +5,9 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	// The Player object
-	private float speed = 20;
-	private float tilt = 3;
-	private Vector3 moveForward = new Vector3(0, 0, 2);
+	private float speed = 40;
+	private float tilt = 1;
+	private Vector3 moveForward = new Vector3(0, 0, 1);
 	public Rigidbody player;
 
 	void Start () {
@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
 
 		// Move right/left, up/down, at a faster speed than moving forward.
-		player.AddForce( new Vector3(Input.GetAxis ("Horizontal")*speed*5, 0, 0));
-		player.AddForce (new Vector3(0, Input.GetAxis ("Vertical")*speed*5, 0));
+		player.AddForce( new Vector3(Input.GetAxis ("Horizontal")*speed, 0, 0));
+		player.AddForce (new Vector3(0, Input.GetAxis ("Vertical")*speed, 0));
 
 		player.AddForce(moveForward*speed);
 

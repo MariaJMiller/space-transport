@@ -26,7 +26,6 @@ public class PlayerShoot : MonoBehaviour {
 	
 	void Update () {
 
-
 		if (Input.GetButton("Fire1") && Time.time > laserNextFire) {
 
 			laserNextFire = Time.time + laserFireRate;
