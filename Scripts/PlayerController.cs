@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 		player.AddForce( new Vector3(Input.GetAxis ("Horizontal")*speed*5, 0, 0));
 		player.AddForce (new Vector3(0, Input.GetAxis ("Vertical")*speed*5, 0));
 
-		//player.AddForce(moveForward*speed);
+		player.AddForce(moveForward*speed);
 
 		// The x rotation must be set at 270 or the player will face down.
 		player.rotation = Quaternion.Euler (270, 0, player.velocity.x * tilt);

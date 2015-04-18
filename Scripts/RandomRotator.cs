@@ -9,9 +9,4 @@ public class RandomRotator : MonoBehaviour {
 	void Start () {
 		rigidbody.angularVelocity = Random.insideUnitSphere * tumble;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
