@@ -4,43 +4,21 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
 
-	public int startingHealth = 100;
-	public int currentHealth;
+	public int playerStartingHealth = 100;
+	public int playerCurrentHealth;
 	public Slider healthSlider;
 
-	PlayerController playerController;
-	// PlayerShooting playerShooting;
-	bool isDead = false;
-	bool damaged = false;
-
-	// Set references and initial health
 	void Awake () {
 
-		playerController = GetComponent<PlayerController>();
-
-		currentHealth = startingHealth;
+		playerCurrentHealth = playerStartingHealth;
 	}
 
-	public void TakeDamage (int damage) {
+	public int DamagePlayer (int damage) {
 
-		damaged = true;
+		playerCurrentHealth -= damage;
 
-		// Subtract damage from health.
-		currentHealth -= damage;
+		healthSlider.value = playerCurrentHealth;
 
-		healthSlider.value = currentHealth;
-
-		if (currentHealth <= 0 && !isDead) {
-			Die ();
-		}
-	}
-
-	public void Die () {
-
-		// Don't call this function again.
-		isDead = true;
-
-		// TODO
-		// Destroy jet object and return to game menu.
+		return playerCurrentHealth;
 	}
 }

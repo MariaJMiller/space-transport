@@ -6,10 +6,16 @@ public class DestroyByContact : MonoBehaviour {
 	public GameObject asteriodExplosion;
 	public GameObject playerExplosion;
 	private int scoreValue = 10;
+	private int damageAmount = 10;
+	private int playerHealthValue = 100;
 
 	private GameController gameController;
+	private PlayerHealth playerHealth;
 
 	void Start () {
+
+		playerHealth = GameObject.FindWithTag ("Player").GetComponent <PlayerHealth>();
+		playerHealthValue = playerHealth.playerStartingHealth;
 
 		GameObject gameControllerObject = GameObject.FindWithTag("GameController");
 
@@ -27,14 +33,20 @@ public class DestroyByContact : MonoBehaviour {
 		if (other.tag == "Boundary") {
 			return;
 		}
-		Instantiate(asteriodExplosion, transform.position, transform.rotation);
-
-		if (other.tag == "Player") {
-			Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-			gameController.GameOver();
+		else if (other.tag == "Player") {
+			playerHealthValue = playerHealth.DamagePlayer(damageAmount);
+			if (playerHealthValue <= 0) {
+				Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+				Destroy (other.gameObject);
+				gameController.GameOver();
+			}
 		}
-		gameController.AddScore(scoreValue);
-		Destroy (other.gameObject);
-		Destroy (gameObject);
+		else {
+
+			Instantiate(asteriodExplosion, transform.position, transform.rotation);
+			gameController.AddScore(scoreValue);
+			Destroy (other.gameObject);
+			Destroy (gameObject);
+		}
 	}
 }
