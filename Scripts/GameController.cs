@@ -11,11 +11,11 @@ public class GameController : MonoBehaviour {
 	private float startWait = 1;
 	private float waveWait = 4;
 	private float spawnX = 50; 
-	private float spawnY = 10;
+	private float spawnY = 20;
 	private float spawnZMax = 300;
 	private float spawnZMin = 200;
 
-	private int hazardCount = 8;
+	private int hazardCount = 20;
 
 	public Text scoreText;
 	public Text restartText;
