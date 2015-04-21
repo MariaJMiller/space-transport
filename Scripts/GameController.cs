@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour {
 	private bool gameOver;
 	private bool restart;
 	private int score;
+	private float scaleValue;
+	private Vector3 scale = new Vector3 (1, 1, 1);
 
 	// Use this for initialization
 	void Start () {
@@ -59,10 +61,15 @@ public class GameController : MonoBehaviour {
 		while (true) {
 
 			for (int i = 0; i < hazardCount; i++) {
+
 				Vector3 spawnPosition = new Vector3 (Random.Range(-spawnX, spawnX), Random.Range(-spawnY, spawnY), 
 				                                     playerPosition.position.z + Random.Range (spawnZMin, spawnZMax));
 				Quaternion spawnRotation = Quaternion.identity;
 				Instantiate(hazard, spawnPosition, spawnRotation);
+
+				scaleValue = Random.Range (1, 3);
+				hazard.transform.localScale = scale * scaleValue;
+
 				yield return new WaitForSeconds (spawnWait);
 			}
 			yield return new WaitForSeconds (waveWait);
