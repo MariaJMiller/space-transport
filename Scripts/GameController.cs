@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-	public GameObject hazard;
+	private GameObject hazard;
  	private GameObject Player;
 	private Transform playerPosition;
 	private float spawnWait = 0.5f;
@@ -34,7 +34,8 @@ public class GameController : MonoBehaviour {
 		restartText.text = "";
 		gameOverText.text = "";
 		UpdateScore ();
-		Player = GameObject.Find ("Jet") as GameObject;
+		hazard = Resources.Load ("Asteroid") as GameObject;
+		Player = GameObject.FindGameObjectWithTag ("Player") as GameObject;
 		playerPosition = Player.transform;
 
 		StartCoroutine(SpawnWaves ());
