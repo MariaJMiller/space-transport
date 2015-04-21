@@ -30,15 +30,8 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		score = 0;
-		gameOver = false;
-		restart = false;
-		restartText.text = "";
-		gameOverText.text = "";
+		initializeVariables ();
 		UpdateScore ();
-		hazard = Resources.Load ("Asteroid") as GameObject;
-		Player = GameObject.FindGameObjectWithTag ("Player") as GameObject;
-		playerPosition = Player.transform;
 
 		StartCoroutine(SpawnWaves ());
 	
@@ -52,6 +45,20 @@ public class GameController : MonoBehaviour {
 				Application.LoadLevel(Application.loadedLevel);
 			}
 		}
+	}
+
+	void initializeVariables () {
+		
+		score = 0;
+		gameOver = false;
+		restart = false;
+		restartText.text = "";
+		gameOverText.text = "";
+		
+		hazard = Resources.Load ("Asteroid") as GameObject;
+		Player = GameObject.FindGameObjectWithTag ("Player") as GameObject;
+		playerPosition = Player.transform;
+		
 	}
 	
 	IEnumerator SpawnWaves () {
@@ -96,5 +103,5 @@ public class GameController : MonoBehaviour {
 	void UpdateScore () {
 		scoreText.text = "Score: " + score;
 	}
-	
+
 }
