@@ -34,17 +34,27 @@ public class DestroyByContact : MonoBehaviour {
 			return;
 		}
 		else if (other.tag == "Player") {
+
 			playerHealthValue = playerHealth.DamagePlayer(damageAmount);
+
 			if (playerHealthValue <= 0) {
 				Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
 				Destroy (other.gameObject);
 				gameController.GameOver();
 			}
 		}
+		else if (other.tag == "Laser"){
+
+			Instantiate(asteriodExplosion, transform.position, transform.rotation);
+			Destroy (other.gameObject);
+			Destroy (gameObject);
+			gameController.AddScore(scoreValue);
+
+		}
+
 		else {
 
 			Instantiate(asteriodExplosion, transform.position, transform.rotation);
-			gameController.AddScore(scoreValue);
 			Destroy (other.gameObject);
 			Destroy (gameObject);
 		}
